@@ -1,5 +1,5 @@
 /**
- * Created by MacbookStudioPro on 2/8/17.
+ * Created by Ben Maxwell on 2/8/17.
  */
 public class InventoryItem {
 
