@@ -12,7 +12,7 @@ public class Main {
         session.loadInv();
 
         while (true) {
-            session.userPrompt();
+            session.promptAndProcess();
         }
     }
 }

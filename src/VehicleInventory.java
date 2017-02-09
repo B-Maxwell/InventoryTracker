@@ -9,20 +9,13 @@ import java.util.Scanner;
 
 public class VehicleInventory {
 
-    String vehicleType;
-    int quantity;
-    ArrayList<VehicleInventory> vehicles = new ArrayList<>();
+
+    ArrayList<InventoryItem> vehicles = new ArrayList<>();
     Scanner input = new Scanner(System.in);
 
     //VehicleInventory method overload
     public VehicleInventory() {
 
-    }
-
-    //Constructor
-    public VehicleInventory(String vehicleType, int quantity) {
-        this.vehicleType = vehicleType;
-        this.quantity = quantity;
     }
 
 
@@ -31,9 +24,9 @@ public class VehicleInventory {
         System.out.println("---------------------------------------------------");
 
         //Make existing vehicle inventory
-        VehicleInventory v1 = new VehicleInventory("Car", 5);
-        VehicleInventory v2 = new VehicleInventory("Truck", 10);
-        VehicleInventory v3 = new VehicleInventory("SUV", 25);
+        InventoryItem v1 = new InventoryItem("Car", 5);
+        InventoryItem v2 = new InventoryItem("Truck", 10);
+        InventoryItem v3 = new InventoryItem("SUV", 25);
 
         //Load existing vehicle inventory
         vehicles.add(0, v1);
@@ -45,7 +38,7 @@ public class VehicleInventory {
     }
 
 
-    public boolean userPrompt() {
+    public boolean promptAndProcess() {
 
 
         while (true) {
@@ -64,7 +57,7 @@ public class VehicleInventory {
 
                 case 1:
                     //Add vehicle type to inventory
-                    addInv();
+                    vehicles.add(createItem());
                     break;
 
                 case 2:
@@ -96,11 +89,11 @@ public class VehicleInventory {
     }
 
 
-    public void addInv() {
+    public InventoryItem createItem() {
         System.out.println("Please enter a vehicle type:");
         String vType = input.nextLine();
-        VehicleInventory invType = new VehicleInventory(vType, 0);
-        vehicles.add(invType);
+        InventoryItem invType = new InventoryItem(vType,0);
+        return invType;
 
     }
 
@@ -125,14 +118,14 @@ public class VehicleInventory {
         System.out.println("\nPlease enter the new quantity of this vehicle: ");
         int vQty = input.nextInt();
         String vType = vehicles.get(qNumb - 1).vehicleType;
-        vehicles.set(qNumb - 1, new VehicleInventory(vType, vQty));
+        vehicles.set(qNumb - 1, new InventoryItem(vType, vQty));
 
     }
 
 
     public void printInv() {
         int i = 1;
-        for (VehicleInventory vType : vehicles) {
+        for (InventoryItem vType : vehicles) {
             System.out.println(i + ". [" + vType.quantity + "] " + vType.vehicleType);
             i++;
         }
